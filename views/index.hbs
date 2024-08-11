@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Music Player</title>
+    <!-- {{!-- <link rel="stylesheet" href="styles.css"> --}} -->
+    <style>
+        /* styles.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Colorful gradient background */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        nav {
+            width: 100%;
+            background-color: #000;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff7e5f; /* Add a color change effect on hover */
+        }
+
+        nav .sign-in {
+            background-color: #e71212;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .sign-in:hover {
+            background-color: #ee27ee; /* Change color on hover */
+        }
+
+        .content {
+            margin-top: 80px; /* Adjusted margin to fit below fixed nav */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .music-player {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #030000;
+        }
+
+        #current-song {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #116c14;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #45a049;
+        }
+
+        #song-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #song-list li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #dbcfcf;
+        }
+
+        #song-list li:hover {
+            background-color: #eae4e4;
+        }
+
+        #song-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MusicApp</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+        <a href="#" class="sign-in">Sign In</a>
+    </nav>
+
+    <div class="content">
+        <div class="music-player">
+            <h2>Now Playing</h2>
+            <div id="current-song">Select a song</div>
+            <audio id="audio-player" controls></audio>
+            <div class="controls">
+                <button id="play-button">Play</button>
+                <button id="pause-button">Pause</button>
+            </div>
+            <ul id="song-list">
+                <li data-song="NODEJS/Express/music/Love Story.mp3">Original Track 1</li>
+                <li data-song="NODEJS/music/original2.mp3">Original Track 2</li>
+                <!-- Add more songs as needed -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- {{!-- <script src="script.js"></script> --}} -->
+    <script>
+        // script.js
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const audioPlayer = document.getElementById("audio-player");
+            const currentSong = document.getElementById("current-song");
+            const playButton = document.getElementById("play-button");
+            const pauseButton = document.getElementById("pause-button");
+            const songListItems = document.querySelectorAll("#song-list li");
+
+            songListItems.forEach(item => {
+                item.addEventListener("click", function() {
+                    const song = this.getAttribute("data-song");
+                    audioPlayer.src = song;
+                    currentSong.textContent = this.textContent;
+                    audioPlayer.play();
+                });
+            });
+
+            playButton.addEventListener("click", function() {
+                audioPlayer.play();
+            });
+
+            pauseButton.addEventListener("click", function() {
+                audioPlayer.pause();
+            });
+        });
+
+    </script>
+</body>
+</html>

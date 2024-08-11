@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="music-player">
+        <h2>Now Playing</h2>
+        <div id="current-song">Select a song</div>
+        <audio id="audio-player" controls></audio>
+        <div class="controls">
+            <button id="play-button">Play</button>
+            <button id="pause-button">Pause</button>
+        </div>
+        <ul id="song-list">
+            <li data-song="NODEJS/Express/music/Love Story.mp3">Original Track 1</li>
+            <li data-song="NODEJS/music/original2.mp3">Original Track 2</li>
+            <!-- Add more songs as needed -->
+        </ul>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
